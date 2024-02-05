@@ -1,10 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Play.Catalog.Service
 {
-    public record ItemDto(Guid Id, string Name,
-                  string Description, decimal Price,
+    public record ItemDto(Guid Id, [Required] string Name,
+                  [Required] string Description, decimal Price,
                    DateTimeOffset CreatedDate);
-    public record CreatedItemDto(string Name, string Description, decimal Price);
-    public record UpdatedItemDto(string Name, string Description, decimal Price);
+    public record CreatedItemDto([Required] string Name, [Required] string Description, [Range(0, 1000)] decimal Price);
+    public record UpdatedItemDto([Required] string Name, string Description, [Range(0, 1000)] decimal Price);
 }
